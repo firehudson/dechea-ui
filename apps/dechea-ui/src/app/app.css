@@ -1,0 +1,32 @@
+:root {
+  /* interactive elements */
+  --input-bg: #F0F5FB;
+
+  /* borders */
+  --border-radius-md: 16px;
+
+  /* typography */
+  --font-family-base: Montserrat;
+  --font-weight-base: 500;
+
+  --font-size-sm: 13px;
+  --font-size-md: 18px;
+  --font-size-lg: 24px;
+
+  --line-height-sm: 18.2px;
+  --line-height-lg: 33.6px;
+}
+
+body {
+  /* generic font styles */
+  font-style: normal;
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-base);
+  line-height: var(--line-height-sm);
+  letter-spacing: 0.01em;
+}
+
+* {
+  box-sizing: border-box;
+}
