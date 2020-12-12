@@ -16,7 +16,16 @@
   color: var(--grey-04, #556E9A);
 }
 
+.active {
+  background-color: var(--white);
+  border: 1px solid #EBF0F6;
+}
+
 .placeholder {
   margin-left: 8px;
   width: calc(100% - 115px);
+}
+
+.placeholderActive {
+  color: var(--dark-blue-1, #314363);
 }

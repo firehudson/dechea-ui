@@ -15,6 +15,12 @@
 
   --line-height-sm: 18.2px;
   --line-height-lg: 33.6px;
+
+  /* Colors */
+  --white: #FFFFFF;
+  --dark-blue-1: #314363;
+  --grey-03: #7E98BA;
+  --grey-04: #556E9A;
 }
 
 body {

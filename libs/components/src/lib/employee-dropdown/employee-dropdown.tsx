@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
+import cx from 'classnames';
 import AvatarGroup from './components/avatar-group';
 import styles from './employee-dropdown.module.css';
 import ArrowIcon from './icons/arrow-icon';
@@ -9,11 +10,23 @@ export interface EmployeeDropdownProps {
 }
 
 export function EmployeeDropdown(props: EmployeeDropdownProps) {
+  const [active, setActive] = useState(false);
+  const toggleActive = () => setActive(!active);
+
   return (
-    <div className={styles.container}>
+    <div className={cx(styles.container, active && styles.active)} onClick={toggleActive}>
       <AvatarGroup />
-      <span className={styles.placeholder}>{props.placeholder}</span>
-      <ArrowIcon />
+      <span
+        className={cx(
+          styles.placeholder,
+          {
+            [styles.placeholderActive]: active
+          }
+        )}
+      >
+        {props.placeholder}
+      </span>
+      <ArrowIcon active={active} />
     </div>
   );
 }
