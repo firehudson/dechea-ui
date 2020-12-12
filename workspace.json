@@ -1,0 +1,135 @@
+{
+  "version": 2,
+  "projects": {
+    "dechea-ui": {
+      "root": "apps/dechea-ui",
+      "sourceRoot": "apps/dechea-ui/src",
+      "projectType": "application",
+      "targets": {
+        "build": {
+          "executor": "@nrwl/web:build",
+          "outputs": [
+            "{options.outputPath}"
+          ],
+          "options": {
+            "outputPath": "dist/apps/dechea-ui",
+            "index": "apps/dechea-ui/src/index.html",
+            "main": "apps/dechea-ui/src/main.tsx",
+            "polyfills": "apps/dechea-ui/src/polyfills.ts",
+            "tsConfig": "apps/dechea-ui/tsconfig.app.json",
+            "assets": [
+              "apps/dechea-ui/src/favicon.ico",
+              "apps/dechea-ui/src/assets"
+            ],
+            "styles": [
+              "apps/dechea-ui/src/styles.css"
+            ],
+            "scripts": [],
+            "webpackConfig": "@nrwl/react/plugins/webpack"
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/dechea-ui/src/environments/environment.ts",
+                  "with": "apps/dechea-ui/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "executor": "@nrwl/web:dev-server",
+          "options": {
+            "buildTarget": "dechea-ui:build"
+          },
+          "configurations": {
+            "production": {
+              "buildTarget": "dechea-ui:build:production"
+            }
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/dechea-ui/**/*.{ts,tsx,js,jsx}"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/apps/dechea-ui"
+          ],
+          "options": {
+            "jestConfig": "apps/dechea-ui/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "dechea-ui-e2e": {
+      "root": "apps/dechea-ui-e2e",
+      "sourceRoot": "apps/dechea-ui-e2e/src",
+      "projectType": "application",
+      "targets": {
+        "e2e": {
+          "executor": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/dechea-ui-e2e/cypress.json",
+            "tsConfig": "apps/dechea-ui-e2e/tsconfig.e2e.json",
+            "devServerTarget": "dechea-ui:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "dechea-ui:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/dechea-ui-e2e/**/*.{js,ts}"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "cli": {
+    "defaultCollection": "@nrwl/react"
+  },
+  "generators": {
+    "@nrwl/react": {
+      "application": {
+        "style": "css",
+        "linter": "eslint",
+        "babel": true
+      },
+      "component": {
+        "style": "css"
+      },
+      "library": {
+        "style": "css",
+        "linter": "eslint"
+      }
+    }
+  },
+  "defaultProject": "dechea-ui"
+}
