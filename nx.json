@@ -29,6 +29,9 @@
     "dechea-ui-e2e": {
       "tags": [],
       "implicitDependencies": ["dechea-ui"]
+    },
+    "components": {
+      "tags": []
     }
   }
 }
