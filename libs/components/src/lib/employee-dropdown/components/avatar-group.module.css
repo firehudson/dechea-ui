@@ -1,0 +1,21 @@
+.container {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.firstAvatar {
+  position: absolute;
+  right: 26px;
+  z-index: 2;
+}
+
+/* Not a better way to achieve it, but hardcoding it for the time */
+.centerAvatar {
+  position: absolute;
+  right: 13px;
+}
+
+.lastAvatar {
+  margin-left: 40px;
+}

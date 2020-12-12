@@ -1,0 +1,22 @@
+.container {
+  width: 376px;
+  height: 54px;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+
+  color: var(--grey-03, #7E98BA);
+  background-color: var(--input-bg, #F0F5FB);
+
+  border-radius: var(--border-radius-md, 16px);
+}
+
+.container:hover {
+  color: var(--grey-04, #556E9A);
+}
+
+.placeholder {
+  margin-left: 8px;
+  width: calc(100% - 115px);
+}
