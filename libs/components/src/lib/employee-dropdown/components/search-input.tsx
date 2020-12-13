@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import cx from 'classnames';
 import { ReactComponent as SearchIcon } from '../../../assets/search.svg';
 import styles from './search-input.module.css';
@@ -8,7 +8,8 @@ interface SearchInputProps {
   placeholder?: string;
 }
 
-const SearchInput = React.forwardRef<HTMLInputElement, SearchInputProps>((props: SearchInputProps, ref) => {
+const SearchInput = (props: SearchInputProps) => {
+  const input = useRef<HTMLInputElement>(null);
   const [active, setActive] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
 
@@ -17,11 +18,16 @@ const SearchInput = React.forwardRef<HTMLInputElement, SearchInputProps>((props:
     setSearchTerm(event.target.value);
   };
 
+  // focus on input element to allow user to start search immediately
+  useEffect(() => {
+    input.current.focus();
+  }, []);
+
   return (
     <div className={cx(styles.container, active && styles.active)}>
       <SearchIcon className={styles.searchIcon} />
       <input
-        ref={ref}
+        ref={input}
         className={styles.input}
         placeholder={props.placeholder}
         value={searchTerm}
@@ -34,7 +40,7 @@ const SearchInput = React.forwardRef<HTMLInputElement, SearchInputProps>((props:
       )}
     </div>
   );
-});
+};
 
 SearchInput.defaultProps = {
   placeholder: 'Search employee...',

@@ -2,14 +2,15 @@ import React from 'react';
 import SearchInput from './search-input';
 import styles from './dropdown-body.module.css';
 
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
 interface DropdownBodyProps {}
 
-const DropdownBody = React.forwardRef<HTMLInputElement>((props: DropdownBodyProps, ref) => {
+const DropdownBody = (props: DropdownBodyProps) => {
   return (
     <div className={styles.container} {...props}>
-      <SearchInput ref={ref}  />
+      <SearchInput />
     </div>
   );
-});
+};
 
 export default DropdownBody;
