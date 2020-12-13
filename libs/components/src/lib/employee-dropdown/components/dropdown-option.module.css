@@ -1,0 +1,19 @@
+.container {
+  display: flex;
+  align-items: center;
+  color: #DAE2EF;
+  margin: 16px 16px 16px 0;
+}
+
+.avatar {
+  margin-left: 20px;
+}
+
+.label {
+  width: 100%;
+  margin-left: 16px;
+}
+
+.groupLabel {
+  color: #A0B5D9;
+}

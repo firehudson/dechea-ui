@@ -1,0 +1,34 @@
+
+.checkbox {
+  visibility: visible;
+  cursor: pointer;
+}
+
+.checkbox:before {
+  content: "\00a0";
+  display: inline-block;
+  height: 16px;
+  width: 16px;
+  margin: 0 .25em 0 0;
+  padding: 0;
+  vertical-align: top;
+  background-color: #041532;
+  border-radius: 4px;
+  outline: none;
+}
+
+.checkbox:checked:before {
+  background: #346BD1;
+  color: #ffffff;
+  content: "\2713";
+  text-align: center;
+  border: none;
+}
+
+.checkbox:checked:after {
+  font-weight: bold;
+}
+
+.checkbox:focus::before {
+  outline: none;
+}

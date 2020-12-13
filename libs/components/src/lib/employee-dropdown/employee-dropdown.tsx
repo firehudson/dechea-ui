@@ -5,15 +5,18 @@ import styles from './employee-dropdown.module.css';
 import ArrowIcon from './icons/arrow-icon';
 import DropdownBody from './components/dropdown-body';
 import useBlurHandler from './hooks/useBlurHandler';
+import { EmployeeDropdownGroup } from './employee-dropdown.typings';
 
-/* eslint-disable-next-line */
+
 export interface EmployeeDropdownProps {
+  selectAllOptionLabel?: string;
+  employeesByGroup: EmployeeDropdownGroup[];
   placeholder: string;
 }
 
 export function EmployeeDropdown(props: EmployeeDropdownProps) {
   const ref = useRef<HTMLDivElement>(null);
-  const [active, setActive] = useState(false);
+  const [active, setActive] = useState(true);
   const toggleActive = () => {
     setActive(!active);
   };
@@ -41,7 +44,11 @@ export function EmployeeDropdown(props: EmployeeDropdownProps) {
       <ArrowIcon active={active} />
     </div>
     {active && (
-      <DropdownBody ref={ref} />
+      <DropdownBody
+        ref={ref}
+        selectAllOptionLabel={props.selectAllOptionLabel}
+        optionsGroup={props.employeesByGroup}
+      />
     )}
     </>
   );

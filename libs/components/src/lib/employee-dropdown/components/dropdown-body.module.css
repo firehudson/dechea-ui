@@ -4,4 +4,10 @@
   background-color: #142A51;
   border-radius: var(--border-radius-sm);
   padding-top: 4px;
+  overflow-y: auto;
+}
+
+.divider {
+  border: 1px solid #25406D;
+  opacity: 0.5;
 }
