@@ -16,7 +16,8 @@
     "baseUrl": ".",
     "paths": {
       "@dechea/components": ["libs/components/src/index.ts"],
-      "@dechea/data": ["libs/data/src/index.ts"]
+      "@dechea/data": ["libs/data/src/index.ts"],
+      "@dechea/constants": ["libs/constants/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
