@@ -15,7 +15,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@dechea/components": ["libs/components/src/index.ts"]
+      "@dechea/components": ["libs/components/src/index.ts"],
+      "@dechea/data": ["libs/data/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

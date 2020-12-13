@@ -32,6 +32,9 @@
     },
     "components": {
       "tags": []
+    },
+    "data": {
+      "tags": []
     }
   }
 }
