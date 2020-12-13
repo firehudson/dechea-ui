@@ -10,18 +10,18 @@ export interface AvatarProps {
   avatars?: string[];
 }
 
-const AvatarGroups = (props: AvatarProps) => {
+const AvatarGroupDark = (props: AvatarProps) => {
   return (
     <div className={cx(styles.container, props.className)}>
-      <Avatar count={12} size={AvatarSize.md} className={styles.firstAvatar} />
-      <img src={Icon2} className={styles.centerAvatar} alt="xavier" />
-      <img src={Icon1} className={styles.lastAvatar} alt="tausend" />
+      <Avatar count={12} size={AvatarSize.sm} className={cx(styles.firstAvatar, styles.darkBorder)} />
+      <img src="assets/dr-xavier.svg" className={styles.centerAvatar} alt="xavier" />
+      <img src="assets/dr-tausend.svg" className={styles.lastAvatar} alt="tausend" />
     </div>
   );
 };
 
-AvatarGroups.defaultProps = {
+AvatarGroupDark.defaultProps = {
   avatars: [],
 };
 
-export default AvatarGroups;
+export default AvatarGroupDark;

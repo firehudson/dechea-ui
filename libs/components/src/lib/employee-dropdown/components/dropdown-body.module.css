@@ -11,3 +11,35 @@
   border: 1px solid #25406D;
   opacity: 0.5;
 }
+
+.selectAllOption {
+  display: flex;
+  align-items: center;
+  margin: 16px 0;
+  margin-left: 6px;
+  color: #DAE2EF;
+}
+
+.selectAllOptionLabel {
+  /* magic number below is due to absolute positioned images in the group */
+  width: calc(100% - 121px);
+  margin-left: 16px;
+}
+
+.container::-webkit-scrollbar {
+  width: 3px;
+}
+
+.container::-webkit-scrollbar-thumb {
+  background: var(--grey-04);
+  border-radius: 2px;
+}
+
+.container::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+.container::-webkit-scrollbar-track-piece {
+  margin-top: 54px;
+  margin-bottom: 14px;
+}

@@ -1,9 +1,11 @@
 import React from 'react';
 import SearchInput from './search-input';
 import styles from './dropdown-body.module.css';
-import AvatarGroups from './avatar-group';
+import AvatarGroup from './avatar-group-dark';
 import DropdownOption from './dropdown-option';
+import Checkbox from './checkbox';
 import { Employee, EmployeeDropdownGroup } from '../employee-dropdown.typings';
+import { AvatarSize } from './avatar-count';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 interface DropdownBodyProps {
@@ -16,13 +18,14 @@ const DropdownBody = React.forwardRef<HTMLDivElement, DropdownBodyProps>((props,
   return (
     <div ref={ref} className={styles.container} {...props}>
       <SearchInput />
-      {/* {props.selectAllOptionLabel && (
-        <>
-          <AvatarGroups />
-          {props.selectAllOptionLabel}
-          <input type="checkbox" />
-        </>
-      )} */}
+      {props.selectAllOptionLabel && (
+        <div className={styles.selectAllOption}>
+          <AvatarGroup size={AvatarSize.sm} count={10} dark />
+          <span className={styles.selectAllOptionLabel}>{props.selectAllOptionLabel}</span>
+          <Checkbox />
+        </div>
+      )}
+      <div className={styles.divider} />
       {props.pinnedEmployees.map((employee: Employee) => (
         <DropdownOption
           key={employee.id}

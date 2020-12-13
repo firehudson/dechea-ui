@@ -19,3 +19,7 @@
 .lastAvatar {
   margin-left: 40px;
 }
+
+.darkBorder {
+  border-color: #142A51 !important;
+}
