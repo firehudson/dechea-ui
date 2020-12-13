@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import cx from 'classnames';
 import AvatarGroup from './components/avatar-group';
 import styles from './employee-dropdown.module.css';
 import ArrowIcon from './icons/arrow-icon';
+import DropdownBody from './components/dropdown-body';
 
 /* eslint-disable-next-line */
 export interface EmployeeDropdownProps {
@@ -10,10 +11,12 @@ export interface EmployeeDropdownProps {
 }
 
 export function EmployeeDropdown(props: EmployeeDropdownProps) {
-  const [active, setActive] = useState(false);
+  const ref = useRef();
+  const [active, setActive] = useState(true);
   const toggleActive = () => setActive(!active);
 
   return (
+    <>
     <div className={cx(styles.container, active && styles.active)} onClick={toggleActive}>
       <AvatarGroup />
       <span
@@ -28,6 +31,10 @@ export function EmployeeDropdown(props: EmployeeDropdownProps) {
       </span>
       <ArrowIcon active={active} />
     </div>
+    {active && (
+      <DropdownBody ref={ref} />
+    )}
+    </>
   );
 }
 

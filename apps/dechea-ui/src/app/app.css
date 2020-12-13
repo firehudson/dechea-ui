@@ -3,10 +3,13 @@
   --input-bg: #F0F5FB;
 
   /* borders */
+  --border-radius-xs: 8px;
+  --border-radius-sm: 12px;
   --border-radius-md: 16px;
 
   /* typography */
   --font-family-base: Montserrat;
+  --font-weight-light: 400;
   --font-weight-base: 500;
 
   --font-size-sm: 13px;
@@ -19,6 +22,7 @@
   /* Colors */
   --white: #FFFFFF;
   --dark-blue-1: #314363;
+  --grey-02: #EFF5FC;
   --grey-03: #7E98BA;
   --grey-04: #556E9A;
 }
