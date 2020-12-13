@@ -49,14 +49,9 @@ export const getEmployeesByGroup = () => {
 export const getPinnedEmployees = () => {
   return [
     {
-      label: 'Pinned employees',
-      pinnedOptions: [
-        {
-          id: 7,
-          avatar: 'assets/dr-tausend.svg',
-          displayName: 'Dr. Seigfried Tausend',
-        }
-      ]
+      id: 7,
+      avatar: 'assets/dr-tausend.svg',
+      displayName: 'Dr. Seigfried Tausend',
     },
   ];
 };

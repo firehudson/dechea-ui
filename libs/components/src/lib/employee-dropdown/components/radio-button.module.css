@@ -1,0 +1,29 @@
+.radioButton:after {
+  width: 16px;
+  height: 16px;
+  border-radius: 25px;
+  top: -2px;
+  left: -1px;
+  position: relative;
+  background-color: #041532;
+  content: '';
+  display: inline-block;
+  visibility: visible;
+  border: 0px solid var(--white);
+  cursor: pointer;
+}
+
+.radioButton:checked:after {
+  width: 8px;
+  height: 8px;
+  border-radius: 15px;
+  top: 0px;
+  left: 0px;
+  position: relative;
+  background-color: #346BD1;
+  content: '';
+  display: inline-block;
+  visibility: visible;
+  border: 3px solid var(--white);
+  cursor: pointer;
+}

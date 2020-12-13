@@ -5,12 +5,13 @@ import styles from './employee-dropdown.module.css';
 import ArrowIcon from './icons/arrow-icon';
 import DropdownBody from './components/dropdown-body';
 import useBlurHandler from './hooks/useBlurHandler';
-import { EmployeeDropdownGroup } from './employee-dropdown.typings';
+import { Employee, EmployeeDropdownGroup } from './employee-dropdown.typings';
 
 
 export interface EmployeeDropdownProps {
   selectAllOptionLabel?: string;
   employeesByGroup: EmployeeDropdownGroup[];
+  pinnedEmployees: Employee[];
   placeholder: string;
 }
 
@@ -48,6 +49,7 @@ export function EmployeeDropdown(props: EmployeeDropdownProps) {
         ref={ref}
         selectAllOptionLabel={props.selectAllOptionLabel}
         optionsGroup={props.employeesByGroup}
+        pinnedEmployees={props.pinnedEmployees}
       />
     )}
     </>

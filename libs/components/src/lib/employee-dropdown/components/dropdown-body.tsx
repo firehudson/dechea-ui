@@ -3,12 +3,13 @@ import SearchInput from './search-input';
 import styles from './dropdown-body.module.css';
 import AvatarGroups from './avatar-group';
 import DropdownOption from './dropdown-option';
-import { EmployeeDropdownGroup } from '../employee-dropdown.typings';
+import { Employee, EmployeeDropdownGroup } from '../employee-dropdown.typings';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 interface DropdownBodyProps {
   selectAllOptionLabel?: string;
   optionsGroup: EmployeeDropdownGroup[];
+  pinnedEmployees: Employee[];
 }
 
 const DropdownBody = React.forwardRef<HTMLDivElement, DropdownBodyProps>((props, ref) => {
@@ -22,6 +23,16 @@ const DropdownBody = React.forwardRef<HTMLDivElement, DropdownBodyProps>((props,
           <input type="checkbox" />
         </>
       )} */}
+      {props.pinnedEmployees.map((employee: Employee) => (
+        <DropdownOption
+          key={employee.id}
+          value={employee.id}
+          label={employee.displayName}
+          avatar={employee.avatar}
+          actionType="radio"
+        />
+      ))}
+      <div className={styles.divider} />
       {props.optionsGroup.map((optionGroup: EmployeeDropdownGroup, index: number) => (
         <>
           <DropdownOption
