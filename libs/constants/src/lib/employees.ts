@@ -7,17 +7,17 @@ export const getEmployeesByGroup = () => {
       options: [
         {
           id: 1,
-          avatar: 'assets/dr-xavier.svg',
+          avatar: 'assets/dr-xavier.png',
           displayName: 'Dr. Xavier III',
         },
         {
           id: 2,
-          avatar: 'assets/dr-don.svg',
+          avatar: 'assets/dr-don.png',
           displayName: 'Dr. Don Health',
         },
         {
           id: 3,
-          avatar: 'assets/dr-tausend.svg',
+          avatar: 'assets/dr-tausend.png',
           displayName: 'Dr. Seigfried Tausend',
         },
       ]
@@ -28,17 +28,17 @@ export const getEmployeesByGroup = () => {
       options: [
         {
           id: 4,
-          avatar: 'assets/dr-xavier.svg',
+          avatar: 'assets/dr-xavier.png',
           displayName: 'Dr. Xavier III',
         },
         {
           id: 5,
-          avatar: 'assets/dr-don.svg',
+          avatar: 'assets/dr-don.png',
           displayName: 'Dr. Don Health',
         },
         {
           id: 6,
-          avatar: 'assets/dr-tausend.svg',
+          avatar: 'assets/dr-tausend.png',
           displayName: 'Dr. Seigfried Tausend',
         },
       ]
@@ -50,7 +50,7 @@ export const getPinnedEmployees = () => {
   return [
     {
       id: 7,
-      avatar: 'assets/dr-tausend.svg',
+      avatar: 'assets/dr-tausend.png',
       displayName: 'Dr. Seigfried Tausend',
     },
   ];
