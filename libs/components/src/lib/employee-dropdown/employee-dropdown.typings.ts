@@ -5,7 +5,7 @@ export interface Employee {
 }
 
 export interface EmployeeDropdownGroup {
-  id: number;
+  id: string;
   label: string;
   options: Employee[];
 }
