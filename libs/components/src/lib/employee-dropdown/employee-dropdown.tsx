@@ -22,6 +22,7 @@ export function EmployeeDropdown(props: EmployeeDropdownProps) {
   const [allOptions, setAllItems] = useState<Employee[]>([]);
   const [filteredOptions, setFilteredItems] = useState<Employee[]>([]);
   const [selectedOptions, setSelectedOptions] = useState<number[]>([]);
+  const [selectedGroups, setSelectedGroups] = useState<string[]>([]);
   const [searchTerm, setSearchTerm] = useState<string>('');
 
   useEffect(() => {
@@ -66,6 +67,46 @@ export function EmployeeDropdown(props: EmployeeDropdownProps) {
     setIsPinnedOptionSelected(true);
   };
 
+  const selectAllGroupItems = (groupId: string) => {
+    const group = props.employeesByGroup.find(({ id }: EmployeeDropdownGroup) => id === groupId);
+    const optionsToMarkSelected = group.options
+      .filter(
+        option => !selectedOptions.includes(option.id) // filter all unselected options 
+      )
+      .map(({ id }: Employee) => id);
+
+    setSelectedOptions([...selectedOptions, ...optionsToMarkSelected]);
+  };
+
+  const deselectAllGroupItems = (groupId: string) => {
+    const group = props.employeesByGroup.find(({ id }: EmployeeDropdownGroup) => id === groupId);
+
+    const options = [...selectedOptions]
+    group.options.forEach((option: Employee) => {
+      const existingIndex = options.indexOf(option.id);
+      if (existingIndex !== -1) {
+        options.splice(existingIndex, 1);
+      }
+    });
+
+    setSelectedOptions(options);
+  };
+
+  const onSelectGroup = (groupId: string) => {
+    const groups = [...selectedGroups];
+    const existingIndex = groups.indexOf(groupId);
+
+    if (existingIndex === -1) {
+      groups.push(groupId);
+      selectAllGroupItems(groupId);
+    } else {
+      groups.splice(existingIndex, 1);
+      deselectAllGroupItems(groupId);
+    }
+
+    setSelectedGroups(groups);
+  };
+
   useBlurHandler(
     ref,
     () => setActive(false),
@@ -100,7 +141,9 @@ export function EmployeeDropdown(props: EmployeeDropdownProps) {
         isSearching={Boolean(searchTerm.length)}
         selectedOptions={selectedOptions}
         onSelectOption={onSelectOption}
+        selectedGroups={selectedGroups}
         onSelectPinnedOption={onSelectPinnedOption}
+        onSelectGroup={onSelectGroup}
       />
     )}
     </>

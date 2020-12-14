@@ -11,12 +11,14 @@ interface DropdownBodyProps {
   selectAllOptionLabel?: string;
   optionsGroup: EmployeeDropdownGroup[];
   selectedOptions: number[];
+  selectedGroups: string[];
   pinnedEmployees: Employee[];
   filteredOptions: Employee[];
   searchTerm: string;
   isSearching: boolean;
   onChangeSearchTerm: (value: string) => void;
   onSelectOption: (option: Employee) => void;
+  onSelectGroup: (groupId: string) => void;
   onSelectPinnedOption: (option: Employee) => void;
 }
 
@@ -65,9 +67,11 @@ const DropdownBody = React.forwardRef<HTMLDivElement, DropdownBodyProps>((props,
               <div key={optionGroup.id}>
                 <DropdownOption
                   key={optionGroup.id}
-                  value={optionGroup.id}
+                  value={parseInt(optionGroup.id)}
                   label={optionGroup.label}
                   isGroupLabelOption
+                  selected={props.selectedGroups.includes(optionGroup.id)}
+                  onSelect={() => props.onSelectGroup(optionGroup.id)}
                 />
                 {optionGroup.options.map(option => (
                   <DropdownOption
