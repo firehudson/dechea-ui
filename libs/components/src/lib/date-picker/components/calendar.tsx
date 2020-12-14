@@ -3,7 +3,7 @@ import ReactCalendar from "react-infinite-calendar";
 import dayjs from 'dayjs';
 import 'react-infinite-calendar/styles.css';
 
-import useBlurHandler from '../../employee-dropdown/hooks/useBlurHandler';
+import useBlurHandler from '../../../hooks/useBlurHandler';
 import './calendar-overrides.css';
 
 export const defaultCalendar = {

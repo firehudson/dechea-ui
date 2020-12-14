@@ -4,7 +4,7 @@ import AvatarGroup from './components/avatar-group';
 import styles from './employee-dropdown.module.css';
 import ArrowIcon from './icons/arrow-icon';
 import DropdownBody from './components/dropdown-body';
-import useBlurHandler from './hooks/useBlurHandler';
+import useBlurHandler from '../../hooks/useBlurHandler';
 import { Employee, EmployeeDropdownGroup } from './employee-dropdown.typings';
 
 
