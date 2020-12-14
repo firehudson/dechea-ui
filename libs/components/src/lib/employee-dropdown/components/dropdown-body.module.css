@@ -8,7 +8,7 @@
 }
 
 .divider {
-  border: 1px solid #25406D;
+  border: 1px solid var(--border-primary);
   opacity: 0.5;
 }
 

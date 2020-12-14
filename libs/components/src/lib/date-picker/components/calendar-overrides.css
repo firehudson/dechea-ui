@@ -1,0 +1,176 @@
+/* This file overrides the internal css of react-infinite-calendar */
+.react-calendar {
+  border-radius: var(--border-radius-sm);
+  background-color: var(--bg-dark);
+  box-shadow: 0px 25px 70px rgba(53, 69, 98, 0.15), 0px 20px 50px rgba(53, 69, 98, 0.15);
+}
+
+.react-calendar::-webkit-scrollbar {
+  width: 0px;
+}
+
+.Cal__Container__root {
+  font-family: var(--font-family-base) !important;
+  position: absolute;
+  z-index: 9;
+  border: none;
+}
+
+li.Cal__Day__root.Cal__Day__enabled:before {
+  display: none;
+}
+
+.Cal__Day__root .Cal__Day__enabled {
+  font-family: var(--font-family-base) !important;
+  font-style: normal !important;
+  font-weight: bold !important;
+  font-size: var(--font-size-sm) !important;
+  line-height: 140% !important;
+  text-align: center !important;
+  color: var(--white) !important;
+}
+
+.Cal__Day__root.Cal__Day__selected .Cal__Day__selection {
+  position: absolute;
+  top: 65%;
+  width: 49px;
+  height: 40px;
+  left: 55%;
+  margin-top: -26px;
+  line-height: 45px;
+  z-index: 2;
+  margin-left: -26px;
+}
+
+.Cal__Weekdays__root {
+  height: 40px;
+  background-color: var(--bg-dark) !important;
+  font-style: normal !important;
+  font-weight: 600 !important;
+  font-size: var(--font-size-sm) !important;
+  line-height: 140% !important;
+  text-align: center !important;
+  color: var(--grey-04) !important;
+  border-radius: var(--border-radius-sm);
+}
+
+.Cal__MonthList__root {
+  background-color: var(--bg-dark);
+  color: var(--white);
+}
+
+.Cal__Month__row:first-child li {
+  background-color: var(--bg-dark);
+  box-shadow: 0px -1px 0 var(--border-primary);
+}
+
+.Cal__Month__row.Cal__Month__partial:first-child li:first-child {
+  box-shadow: 0px -1px 0 var(--border-primary), inset 1px 0 0 var(--border-primary);
+}
+
+.Cal__Month__row.Cal__Month__partial:last-of-type li {
+  box-shadow: 0px 1px 0 var(--border-primary);
+}
+
+.Cal__Day__month {
+  font-family: var(--font-family-base) !important;
+  color: var(--grey-03);
+  font-weight: bold;
+  font-size: var(--font-size-sm);
+  line-height: 140%;
+  text-align: center;
+  letter-spacing: 0.02em;
+  top: -3px;
+}
+
+.Cal__Container__wrapper {
+  background-color: var(--bg-dark);
+  color: var(--white);
+  box-shadow: 0px 25px 70px rgba(53, 69, 98, 0.15),
+    0px 20px 50px rgba(53, 69, 98, 0.15) !important;
+  backdrop-filter: blur(144px) !important;
+  border-radius: 12px !important;
+}
+
+
+.Cal__Weekdays__day {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  padding-left: 12px;
+  flex-basis: 14.28571%;
+  flex-grow: 1;
+  font-weight: 500;
+}
+
+.Cal__Day__selection {
+  background: var(--checkbox-secondary) !important;
+  border-radius: 8px !important;
+}
+
+.Cal__Day__root.Cal__Day__enabled.Cal__Day__highlighted,
+.Cal__Day__root.Cal__Day__enabled:active,
+.Cal__Day__root.Cal__Day__enabled:hover {
+  position: relative;
+  z-index: 0;
+  background: var(--checkbox-secondary) !important;
+  border-radius: 8px !important;
+  border-color: var(--bg-dark);
+}
+
+.Cal__Day__root.Cal__Day__selected .Cal__Day__selection .Cal__Day__month {
+  display: none;
+  top: 0;
+}
+
+.Cal__Day__enabled {
+  font-weight: bold;
+  font-size: var(--font-size-sm);
+  text-align: center;
+  color: var(--white);
+}
+
+.Cal__Day__root.Cal__Day__selected .Cal__Day__selection .Cal__Day__day {
+  position: relative;
+  font-weight: bold;
+  font-size: var(--font-size-sm);
+  text-align: center;
+  color: var(--white);
+  top: -2px;
+}
+
+.Cal__Day__root.Cal__Day__selected {
+  background-color: #346BD1;
+  border-radius: var(--border-radius-xs);
+}
+
+.Cal__Day__root .Cal__Day__enabled:hover {
+  background: var(--checkbox-secondary);
+  border-radius: var(--border-radius-xs);
+}
+
+.Cal__Container__listWrapper {
+  height: 360px;
+  border-radius: var(--border-radius-sm);
+}
+
+.Cal__Month__row:nth-child(2) {
+  box-shadow: 0 -1px 0 var(--border-primary);
+}
+
+.Cal__Day__root {
+  background-color: var(--bg-dark);
+  color: var(--white);
+}
+
+.Cal__Day__enabled {
+  background-color: var(--bg-dark);
+  color: var(--white);
+}
+
+.Cal__Day__year {
+  display: none;
+}
+
+.Cal__Month__row {
+  height: 38px !important;
+}

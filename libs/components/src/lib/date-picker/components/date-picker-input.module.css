@@ -1,0 +1,31 @@
+.container {
+  width: 360px;
+  height: 34px;
+
+  display: flex;
+  align-items: center;
+
+  font-size: 13px;
+  cursor: pointer;
+  color: var(--grey-04);
+}
+
+.container:hover {
+  color: var(--dark-blue-1);
+}
+
+.icon {
+  width: 14px;
+  height: 14px;
+}
+
+.label {
+  margin-left: 9px;
+  width: 100%;
+}
+
+.divider {
+  width: 360px;
+  margin-top: 5px;
+  border-bottom: 1px solid #E8ECF2;
+}

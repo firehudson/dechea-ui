@@ -6,6 +6,7 @@
   --border-radius-xs: 8px;
   --border-radius-sm: 12px;
   --border-radius-md: 16px;
+  --border-primary: #25406D;
 
   /* typography */
   --font-family-base: Montserrat;
@@ -27,6 +28,7 @@
   --grey-04: #556E9A;
   --body-text-primary: #DAE2EF;
   --body-text-secondary: #6F8BBC;
+  --bg-dark: #142A51;
 }
 
 body {
@@ -37,6 +39,11 @@ body {
   font-weight: var(--font-weight-base);
   line-height: var(--line-height-sm);
   letter-spacing: 0.01em;
+}
+
+.app-container {
+  display: flex;
+  justify-content: space-around;
 }
 
 * {

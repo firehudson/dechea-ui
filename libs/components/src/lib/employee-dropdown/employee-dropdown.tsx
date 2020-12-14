@@ -171,41 +171,41 @@ export function EmployeeDropdown(props: EmployeeDropdownProps) {
   );
 
   return (
-    <>
-    <div id="anchor" className={cx(styles.container, active && styles.active)} onClick={toggleActive}>
-      <AvatarGroup />
-      <span
-        className={cx(
-          styles.placeholder,
-          {
-            [styles.placeholderActive]: active
-          }
-        )}
-      >
-        {props.placeholder}
-      </span>
-      <ArrowIcon active={active} />
+    <div>
+      <div id="anchor" className={cx(styles.container, active && styles.active)} onClick={toggleActive}>
+        <AvatarGroup />
+        <span
+          className={cx(
+            styles.placeholder,
+            {
+              [styles.placeholderActive]: active
+            }
+          )}
+        >
+          {props.placeholder}
+        </span>
+        <ArrowIcon active={active} />
+      </div>
+      {active && (
+        <DropdownBody
+          ref={ref}
+          selectAllOptionLabel={props.selectAllOptionLabel}
+          optionsGroup={props.employeesByGroup}
+          pinnedEmployees={props.pinnedEmployees}
+          searchTerm={searchTerm}
+          onChangeSearchTerm={onChangeSearchTerm}
+          filteredOptions={filteredOptions}
+          isSearching={Boolean(searchTerm.length)}
+          isAllOptionsSelected={allOptions.length === selectedOptions.length}
+          selectedOptions={selectedOptions}
+          onSelectOption={onSelectOption}
+          selectedGroups={selectedGroups}
+          onSelectPinnedOption={onSelectPinnedOption}
+          onSelectGroup={onSelectGroup}
+          onSelectAll={onSelectAll}
+        />
+      )}
     </div>
-    {active && (
-      <DropdownBody
-        ref={ref}
-        selectAllOptionLabel={props.selectAllOptionLabel}
-        optionsGroup={props.employeesByGroup}
-        pinnedEmployees={props.pinnedEmployees}
-        searchTerm={searchTerm}
-        onChangeSearchTerm={onChangeSearchTerm}
-        filteredOptions={filteredOptions}
-        isSearching={Boolean(searchTerm.length)}
-        isAllOptionsSelected={allOptions.length === selectedOptions.length}
-        selectedOptions={selectedOptions}
-        onSelectOption={onSelectOption}
-        selectedGroups={selectedGroups}
-        onSelectPinnedOption={onSelectPinnedOption}
-        onSelectGroup={onSelectGroup}
-        onSelectAll={onSelectAll}
-      />
-    )}
-    </>
   );
 }
 
