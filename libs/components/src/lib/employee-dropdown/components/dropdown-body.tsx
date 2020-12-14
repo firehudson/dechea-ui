@@ -72,6 +72,7 @@ const DropdownBody = React.forwardRef<HTMLDivElement, DropdownBodyProps>((props,
                 <DropdownOption
                   key={optionGroup.id}
                   value={parseInt(optionGroup.id)}
+                  className={styles.groupLabel}
                   label={optionGroup.label}
                   isGroupLabelOption
                   selected={props.selectedGroups.includes(optionGroup.id)}

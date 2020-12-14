@@ -7,6 +7,7 @@ import RadioButton from './radio-button';
 interface DropdownOptionProps {
   label: string;
   avatar?: string;
+  className?: string;
   isGroupLabelOption?: boolean;
   value: number;
   selected: boolean;
@@ -22,7 +23,7 @@ const actionTypeMap = {
 const DropdownOption = (props: DropdownOptionProps) => {
   const ActionComponent = actionTypeMap[props.actionType];
   return (
-    <div className={styles.container}>
+    <div className={cx(styles.container, props.className)}>
       {Boolean(props.avatar) && (
         <img className={styles.avatar} src={props.avatar} alt={`${props.value}`} />
       )}
