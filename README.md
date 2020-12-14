@@ -6,6 +6,43 @@ This project was generated using [Nx](https://nx.dev).
 
 🔎 **Nx is a set of Extensible Dev Tools for Monorepos.**
 
+## Project structure
+
+Project consists of 3 monorepos
+
+- `dechea-ui (apps/dechea-ui)` : main demo application
+- `components (libs/components)` : repo to be used for sharable components
+- `constants (libs/constants)` : repo with constant project data (e.g. list of employees)
+
+## Using the app
+
+### Prerequisites
+
+- Node.js > 8.x.x
+- Npm > 4.x.x
+- Yarn > 1.0.0`[optional]`
+
+### Steps to run the project
+
+- Install dependencies: `yarn` | `npm install`
+- Start development server: `yarn start` | `npm start`
+
+The development server should start at http://localhost:4200
+
+### Steps to build production bundle
+
+This repo has chunking and source-maps enables. To build production ready bundle, just run `yarn build`.
+
+This will place a production build in `/dist/apps/dechea-ui`.
+
+### Deployment
+
+The project is setup with firebase hosting and can be deployed by running `yarn deploy:dechea-ui` command.
+
+The app will be deployed to https://dechea-ui.web.app
+
+>Do not forget to rebuild the app before deployment.
+
 ## Adding capabilities to your workspace
 
 Nx supports many plugins which add capabilities for developing different types of applications and different tools.
