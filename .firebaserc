@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "my-sandbox-250210"
+  },
+  "targets": {
+    "my-sandbox-250210": {
+      "hosting": {
+        "dechea-ui": [
+          "dechea-ui"
+        ]
+      }
+    }
+  }
+}

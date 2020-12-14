@@ -1,0 +1,17 @@
+{
+  "hosting": {
+    "target": "dechea-ui",
+    "public": "dist/apps/dechea-ui",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }
+}
