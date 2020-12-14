@@ -18,6 +18,7 @@ export interface EmployeeDropdownProps {
 export function EmployeeDropdown(props: EmployeeDropdownProps) {
   const ref = useRef<HTMLDivElement>(null);
   const [active, setActive] = useState<boolean>(true);
+  const [isPinnedOptionSelected, setIsPinnedOptionSelected] = useState<boolean>(false);
   const [allOptions, setAllItems] = useState<Employee[]>([]);
   const [filteredOptions, setFilteredItems] = useState<Employee[]>([]);
   const [selectedOptions, setSelectedOptions] = useState<number[]>([]);
@@ -41,7 +42,9 @@ export function EmployeeDropdown(props: EmployeeDropdownProps) {
   };
 
   const onSelectOption = (option: Employee) => {
-    const options = [...selectedOptions];
+    const options = isPinnedOptionSelected
+      ? [] // start afresh list
+      : [...selectedOptions] // use exisitng selected items;
     const existingIndex = options.indexOf(option.id);
 
     if (existingIndex === -1) {
@@ -51,6 +54,16 @@ export function EmployeeDropdown(props: EmployeeDropdownProps) {
     }
 
     setSelectedOptions(options);
+
+    if (isPinnedOptionSelected) {
+      // revoke pinned selection state
+      setIsPinnedOptionSelected(false);
+    }
+  };
+
+  const onSelectPinnedOption = (option: Employee) => {
+    setSelectedOptions([option.id]);
+    setIsPinnedOptionSelected(true);
   };
 
   useBlurHandler(
@@ -87,6 +100,7 @@ export function EmployeeDropdown(props: EmployeeDropdownProps) {
         isSearching={Boolean(searchTerm.length)}
         selectedOptions={selectedOptions}
         onSelectOption={onSelectOption}
+        onSelectPinnedOption={onSelectPinnedOption}
       />
     )}
     </>

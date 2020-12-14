@@ -15,21 +15,19 @@ interface DropdownOptionProps {
 }
 
 const actionTypeMap = {
-  checkbox: (props: DropdownOptionProps) => (
-    <Checkbox onChange={props.onSelect} checked={props.selected} />
-  ),
-  radio: (props: DropdownOptionProps) => <RadioButton />,
+  checkbox: Checkbox,
+  radio: RadioButton,
 };
 
 const DropdownOption = (props: DropdownOptionProps) => {
-  const renderComponent = actionTypeMap[props.actionType];
+  const ActionComponent = actionTypeMap[props.actionType];
   return (
     <div className={styles.container}>
       {Boolean(props.avatar) && (
         <img className={styles.avatar} src={props.avatar} alt={`${props.value}`} />
       )}
       <span className={cx(styles.label, props.isGroupLabelOption && styles.groupLabel)}>{props.label}</span>
-      {renderComponent(props)}
+      <ActionComponent onChange={props.onSelect} checked={props.selected} />
     </div>
   );
 };

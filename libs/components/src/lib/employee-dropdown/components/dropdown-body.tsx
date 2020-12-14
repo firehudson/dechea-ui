@@ -16,7 +16,8 @@ interface DropdownBodyProps {
   searchTerm: string;
   isSearching: boolean;
   onChangeSearchTerm: (value: string) => void;
-  onSelectOption: any;
+  onSelectOption: (option: Employee) => void;
+  onSelectPinnedOption: (option: Employee) => void;
 }
 
 const DropdownBody = React.forwardRef<HTMLDivElement, DropdownBodyProps>((props, ref) => {
@@ -56,7 +57,7 @@ const DropdownBody = React.forwardRef<HTMLDivElement, DropdownBodyProps>((props,
                 avatar={employee.avatar}
                 actionType="radio"
                 selected={props.selectedOptions.includes(employee.id)}
-                onSelect={() => props.onSelectOption(employee)}
+                onSelect={() => props.onSelectPinnedOption(employee)}
               />
             ))}
             <div className={styles.divider} />
