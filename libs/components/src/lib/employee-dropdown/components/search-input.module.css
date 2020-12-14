@@ -2,7 +2,9 @@
   height: 48px;
   background-color: #1C3663;
   border-radius: var(--border-radius-xs);
-  margin: 0 4px;
+  margin-left: 4px;
+  /* adjustment for the scrollbar */
+  margin-right: 1px;
   color: var(--white);
   font-weight: var(--font-weight-light);
 
