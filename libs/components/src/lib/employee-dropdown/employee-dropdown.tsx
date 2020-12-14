@@ -17,7 +17,7 @@ export interface EmployeeDropdownProps {
 
 export function EmployeeDropdown(props: EmployeeDropdownProps) {
   const ref = useRef<HTMLDivElement>(null);
-  const [active, setActive] = useState<boolean>(true);
+  const [active, setActive] = useState<boolean>(false);
   const [isPinnedOptionSelected, setIsPinnedOptionSelected] = useState<boolean>(false);
   const [allOptions, setAllItems] = useState<Employee[]>([]);
   const [filteredOptions, setFilteredItems] = useState<Employee[]>([]);
