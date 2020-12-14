@@ -45,7 +45,43 @@ export function EmployeeDropdown(props: EmployeeDropdownProps) {
     setFilteredItems(allOptions.filter((option: Employee) => option.displayName.includes(searchTerm)));
   };
 
-  const onSelectOption = (option: Employee) => {
+  const findGroupById = (groupId: string): EmployeeDropdownGroup => {
+    return props.employeesByGroup.find(
+      ({ id }: EmployeeDropdownGroup) => id === groupId
+    );
+  };
+
+  const isAllGroupOptionsSelected = (groupId: string, updateOptions: number[]) => {
+    const group = findGroupById(groupId);
+    return group.options.reduce(
+      (accumulatedValue: boolean, currentValue: Employee) => {
+        return accumulatedValue && updateOptions.includes(currentValue.id)
+      },
+      true,
+    );
+  };
+
+  const updateGroupSelection = (groupId: string, options: number[]) => {
+    const shouldSelectGroup = isAllGroupOptionsSelected(groupId, options);
+    const groupAlreadySelected = selectedGroups.includes(groupId);
+
+    // only select if not already selected
+    if (shouldSelectGroup && !groupAlreadySelected) {
+      setSelectedGroups([...selectedGroups, groupId]);
+    }
+
+    // only remove if already selected
+    if (!shouldSelectGroup && groupAlreadySelected) {
+      const newGroups = [...selectedGroups]
+      newGroups.splice(
+        selectedGroups.indexOf(groupId),
+        1
+      );
+      setSelectedGroups(newGroups);
+    }
+  };
+
+  const onSelectOption = (option: Employee, groupId: string) => {
     const options = isPinnedOptionSelected
       ? [] // start afresh list
       : [...selectedOptions] // use exisitng selected items;
@@ -58,6 +94,7 @@ export function EmployeeDropdown(props: EmployeeDropdownProps) {
     }
 
     setSelectedOptions(options);
+    updateGroupSelection(groupId, options);
 
     if (isPinnedOptionSelected) {
       // revoke pinned selection state
@@ -67,11 +104,12 @@ export function EmployeeDropdown(props: EmployeeDropdownProps) {
 
   const onSelectPinnedOption = (option: Employee) => {
     setSelectedOptions([option.id]);
+    setSelectedGroups([]);
     setIsPinnedOptionSelected(true);
   };
 
   const selectAllGroupItems = (groupId: string) => {
-    const group = props.employeesByGroup.find(({ id }: EmployeeDropdownGroup) => id === groupId);
+    const group = findGroupById(groupId);
     const optionsToMarkSelected = group.options
       .filter(
         option => !selectedOptions.includes(option.id) // filter all unselected options 
@@ -82,7 +120,7 @@ export function EmployeeDropdown(props: EmployeeDropdownProps) {
   };
 
   const deselectAllGroupItems = (groupId: string) => {
-    const group = props.employeesByGroup.find(({ id }: EmployeeDropdownGroup) => id === groupId);
+    const group = findGroupById(groupId);
 
     const options = [...selectedOptions]
     group.options.forEach((option: Employee) => {

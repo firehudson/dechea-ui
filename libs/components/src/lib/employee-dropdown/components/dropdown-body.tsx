@@ -17,13 +17,12 @@ interface DropdownBodyProps {
   searchTerm: string;
   isSearching: boolean;
   onChangeSearchTerm: (value: string) => void;
-  onSelectOption: (option: Employee) => void;
+  onSelectOption: (option: Employee, groupId: string) => void;
   onSelectGroup: (groupId: string) => void;
   onSelectPinnedOption: (option: Employee) => void;
 }
 
 const DropdownBody = React.forwardRef<HTMLDivElement, DropdownBodyProps>((props, ref) => {
-  console.log('selectedOptions', props.selectedOptions)
   return (
     <div ref={ref} className={styles.container}>
       <SearchInput
@@ -38,7 +37,7 @@ const DropdownBody = React.forwardRef<HTMLDivElement, DropdownBodyProps>((props,
               label={option.displayName}
               avatar={option.avatar}
               selected={props.selectedOptions.includes(option.id)}
-              onSelect={() => props.onSelectOption(option)}
+              onSelect={() => props.onSelectOption(option, option.groupId)}
             />
           ))
         : (
@@ -80,7 +79,7 @@ const DropdownBody = React.forwardRef<HTMLDivElement, DropdownBodyProps>((props,
                     label={option.displayName}
                     avatar={option.avatar}
                     selected={props.selectedOptions.includes(option.id)}
-                    onSelect={() => props.onSelectOption(option)}
+                    onSelect={() => props.onSelectOption(option, optionGroup.id)}
                   />
                 ))}
                 {(props.optionsGroup.length - 1) !== index && (
