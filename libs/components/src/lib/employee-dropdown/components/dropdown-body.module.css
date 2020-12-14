@@ -1,6 +1,6 @@
 .container {
   width: 376px;
-  height: 390px;
+  max-height: 390px;
   background-color: #142A51;
   border-radius: var(--border-radius-sm);
   padding-top: 4px;
