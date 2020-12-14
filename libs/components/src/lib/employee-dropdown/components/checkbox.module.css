@@ -23,7 +23,7 @@ label {
 
 .checkbox:checked + label:before {
   background: #346BD1;
-  color: #ffffff;
+  color: var(--white);
   content: "\2713";
   text-align: center;
   border: none;

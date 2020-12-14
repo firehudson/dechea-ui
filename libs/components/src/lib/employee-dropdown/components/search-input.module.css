@@ -26,22 +26,22 @@
   background: transparent;
   border: none;
   outline: none;
-  color: #DAE2EF;
+  color: var(--body-text-primary);
   width: 100%;
   line-height: 140%;
 }
 
 .input::placeholder {
-  color: #6F8BBC;
+  color: var(--body-text-secondary);
   opacity: 1;
 }
 
 .input:-ms-input-placeholder {
-  color: #6F8BBC;
+  color: var(--body-text-secondary);
 }
 
 .input::-ms-input-placeholder {
-  color: #6F8BBC;
+  color: var(--body-text-secondary);
 }
 
 .clearButton {
