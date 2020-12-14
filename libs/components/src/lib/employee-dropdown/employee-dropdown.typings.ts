@@ -1,11 +1,11 @@
 export interface Employee {
-  id: string;
+  id: number;
   avatar: string;
   displayName: string;
 }
 
 export interface EmployeeDropdownGroup {
-  id: string;
+  id: number;
   label: string;
   options: Employee[];
 }

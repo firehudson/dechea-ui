@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import cx from 'classnames';
 import AvatarGroup from './components/avatar-group';
 import styles from './employee-dropdown.module.css';
@@ -17,9 +17,26 @@ export interface EmployeeDropdownProps {
 
 export function EmployeeDropdown(props: EmployeeDropdownProps) {
   const ref = useRef<HTMLDivElement>(null);
-  const [active, setActive] = useState(true);
+  const [active, setActive] = useState<boolean>(true);
+  const [allOptions, setAllItems] = useState<Employee[]>([]);
+  const [filteredOptions, setFilteredItems] = useState<Employee[]>([]);
+  const [searchTerm, setSearchTerm] = useState<string>('');
+
+  useEffect(() => {
+    const allEmployees = [];
+    props.employeesByGroup.forEach(employeeGroup => {
+      employeeGroup.options.forEach(employee => allEmployees.push(employee))
+    })
+    setAllItems(allEmployees);
+  }, []);
+
   const toggleActive = () => {
     setActive(!active);
+  };
+
+  const onChangeSearchTerm = (searchTerm: string) => {
+    setSearchTerm(searchTerm);
+    setFilteredItems(allOptions.filter((option: Employee) => option.displayName.includes(searchTerm)));
   };
 
   useBlurHandler(
@@ -50,6 +67,10 @@ export function EmployeeDropdown(props: EmployeeDropdownProps) {
         selectAllOptionLabel={props.selectAllOptionLabel}
         optionsGroup={props.employeesByGroup}
         pinnedEmployees={props.pinnedEmployees}
+        searchTerm={searchTerm}
+        onChangeSearchTerm={onChangeSearchTerm}
+        filteredOptions={filteredOptions}
+        isSearching={Boolean(searchTerm.length)}
       />
     )}
     </>

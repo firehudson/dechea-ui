@@ -6,17 +6,20 @@ import styles from './search-input.module.css';
 interface SearchInputProps {
   children?: React.ReactNode;
   placeholder?: string;
+  searchTerm: string;
+  onChangeSearchTerm: (value: string) => void;
 }
 
 const SearchInput = (props: SearchInputProps) => {
   const input = useRef<HTMLInputElement>(null);
   const [active, setActive] = useState(false);
-  const [searchTerm, setSearchTerm] = useState('');
 
   const toggleActive = () => setActive(!active);
   const onTextChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchTerm(event.target.value);
+    props.onChangeSearchTerm(event.target.value);
   };
+
+  const onClear = () => props.onChangeSearchTerm('');
 
   // focus on input element to allow user to start search immediately
   useEffect(() => {
@@ -30,13 +33,13 @@ const SearchInput = (props: SearchInputProps) => {
         ref={input}
         className={styles.input}
         placeholder={props.placeholder}
-        value={searchTerm}
+        value={props.searchTerm}
         onFocus={toggleActive}
         onBlur={toggleActive}
         onChange={onTextChange}
       />
-      {Boolean(searchTerm.length) && (
-        <div className={styles.clearButton}>clear</div>
+      {Boolean(props.searchTerm.length) && (
+        <div className={styles.clearButton} onClick={onClear}>clear</div>
       )}
     </div>
   );
