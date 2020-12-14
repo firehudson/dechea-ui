@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import SearchInput from './search-input';
 import styles from './dropdown-body.module.css';
 import AvatarGroupDark from './avatar-group-dark';
@@ -25,6 +25,12 @@ interface DropdownBodyProps {
 }
 
 const DropdownBody = React.forwardRef<HTMLDivElement, DropdownBodyProps>((props, ref) => {
+  useEffect(() => {
+    return () => {
+      props.onChangeSearchTerm('');
+    };
+  }, []);
+
   return (
     <div ref={ref} className={styles.container}>
       <SearchInput
