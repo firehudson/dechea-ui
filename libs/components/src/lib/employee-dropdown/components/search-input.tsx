@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
 import cx from 'classnames';
-import { ReactComponent as SearchIcon } from '../../../assets/search.svg';
 import styles from './search-input.module.css';
 
 interface SearchInputProps {
@@ -28,7 +27,7 @@ const SearchInput = (props: SearchInputProps) => {
 
   return (
     <div className={cx(styles.container, active && styles.active)}>
-      <SearchIcon className={styles.searchIcon} />
+      <img src="assets/search.svg" alt="search" className={styles.searchIcon} />
       <input
         ref={input}
         className={styles.input}
