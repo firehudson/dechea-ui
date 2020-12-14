@@ -8,24 +8,28 @@ interface DropdownOptionProps {
   label: string;
   avatar?: string;
   isGroupLabelOption?: boolean;
-  value: string;
+  value: number;
+  selected: boolean;
+  onSelect: () => void;
   actionType: 'checkbox' | 'radio'
 }
 
 const actionTypeMap = {
-  checkbox: Checkbox,
-  radio: RadioButton,
+  checkbox: (props: DropdownOptionProps) => (
+    <Checkbox onChange={props.onSelect} checked={props.selected} />
+  ),
+  radio: (props: DropdownOptionProps) => <RadioButton />,
 };
 
 const DropdownOption = (props: DropdownOptionProps) => {
-  const ActionComponent = actionTypeMap[props.actionType];
+  const renderComponent = actionTypeMap[props.actionType];
   return (
     <div className={styles.container}>
       {Boolean(props.avatar) && (
-        <img className={styles.avatar} src={props.avatar} alt={props.value} />
+        <img className={styles.avatar} src={props.avatar} alt={`${props.value}`} />
       )}
       <span className={cx(styles.label, props.isGroupLabelOption && styles.groupLabel)}>{props.label}</span>
-      <ActionComponent />
+      {renderComponent(props)}
     </div>
   );
 };

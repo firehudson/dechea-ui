@@ -20,6 +20,7 @@ export function EmployeeDropdown(props: EmployeeDropdownProps) {
   const [active, setActive] = useState<boolean>(true);
   const [allOptions, setAllItems] = useState<Employee[]>([]);
   const [filteredOptions, setFilteredItems] = useState<Employee[]>([]);
+  const [selectedOptions, setSelectedOptions] = useState<number[]>([]);
   const [searchTerm, setSearchTerm] = useState<string>('');
 
   useEffect(() => {
@@ -37,6 +38,19 @@ export function EmployeeDropdown(props: EmployeeDropdownProps) {
   const onChangeSearchTerm = (searchTerm: string) => {
     setSearchTerm(searchTerm);
     setFilteredItems(allOptions.filter((option: Employee) => option.displayName.includes(searchTerm)));
+  };
+
+  const onSelectOption = (option: Employee) => {
+    const options = [...selectedOptions];
+    const existingIndex = options.indexOf(option.id);
+
+    if (existingIndex === -1) {
+      options.push(option.id);
+    } else {
+      options.splice(existingIndex, 1);
+    }
+
+    setSelectedOptions(options);
   };
 
   useBlurHandler(
@@ -71,6 +85,8 @@ export function EmployeeDropdown(props: EmployeeDropdownProps) {
         onChangeSearchTerm={onChangeSearchTerm}
         filteredOptions={filteredOptions}
         isSearching={Boolean(searchTerm.length)}
+        selectedOptions={selectedOptions}
+        onSelectOption={onSelectOption}
       />
     )}
     </>

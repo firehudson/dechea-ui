@@ -10,14 +10,17 @@ import { Employee, EmployeeDropdownGroup } from '../employee-dropdown.typings';
 interface DropdownBodyProps {
   selectAllOptionLabel?: string;
   optionsGroup: EmployeeDropdownGroup[];
+  selectedOptions: number[];
   pinnedEmployees: Employee[];
   filteredOptions: Employee[];
   searchTerm: string;
   isSearching: boolean;
   onChangeSearchTerm: (value: string) => void;
+  onSelectOption: any;
 }
 
 const DropdownBody = React.forwardRef<HTMLDivElement, DropdownBodyProps>((props, ref) => {
+  console.log('selectedOptions', props.selectedOptions)
   return (
     <div ref={ref} className={styles.container}>
       <SearchInput
@@ -28,9 +31,11 @@ const DropdownBody = React.forwardRef<HTMLDivElement, DropdownBodyProps>((props,
         ? props.filteredOptions.map(option => (
             <DropdownOption
               key={option.id}
-              value={option.id.toString()}
+              value={option.id}
               label={option.displayName}
               avatar={option.avatar}
+              selected={props.selectedOptions.includes(option.id)}
+              onSelect={() => props.onSelectOption(option)}
             />
           ))
         : (
@@ -46,10 +51,12 @@ const DropdownBody = React.forwardRef<HTMLDivElement, DropdownBodyProps>((props,
             {props.pinnedEmployees.map((employee: Employee) => (
               <DropdownOption
                 key={employee.id}
-                value={employee.id.toString()}
+                value={employee.id}
                 label={employee.displayName}
                 avatar={employee.avatar}
                 actionType="radio"
+                selected={props.selectedOptions.includes(employee.id)}
+                onSelect={() => props.onSelectOption(employee)}
               />
             ))}
             <div className={styles.divider} />
@@ -57,16 +64,18 @@ const DropdownBody = React.forwardRef<HTMLDivElement, DropdownBodyProps>((props,
               <div key={optionGroup.id}>
                 <DropdownOption
                   key={optionGroup.id}
-                  value={optionGroup.id.toString()}
+                  value={optionGroup.id}
                   label={optionGroup.label}
                   isGroupLabelOption
                 />
                 {optionGroup.options.map(option => (
                   <DropdownOption
                     key={option.id}
-                    value={option.id.toString()}
+                    value={option.id}
                     label={option.displayName}
                     avatar={option.avatar}
+                    selected={props.selectedOptions.includes(option.id)}
+                    onSelect={() => props.onSelectOption(option)}
                   />
                 ))}
                 {(props.optionsGroup.length - 1) !== index && (
