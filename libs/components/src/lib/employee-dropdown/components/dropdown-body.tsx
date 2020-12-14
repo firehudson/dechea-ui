@@ -54,7 +54,7 @@ const DropdownBody = React.forwardRef<HTMLDivElement, DropdownBodyProps>((props,
             ))}
             <div className={styles.divider} />
             {props.optionsGroup.map((optionGroup: EmployeeDropdownGroup, index: number) => (
-              <>
+              <div key={optionGroup.id}>
                 <DropdownOption
                   key={optionGroup.id}
                   value={optionGroup.id.toString()}
@@ -72,7 +72,7 @@ const DropdownBody = React.forwardRef<HTMLDivElement, DropdownBodyProps>((props,
                 {(props.optionsGroup.length - 1) !== index && (
                   <div className={styles.divider} />
                 )}
-              </>
+              </div>
             ))}
           </>
         )
