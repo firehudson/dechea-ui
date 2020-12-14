@@ -28,8 +28,11 @@ export function EmployeeDropdown(props: EmployeeDropdownProps) {
   useEffect(() => {
     const allEmployees = [];
     props.employeesByGroup.forEach(employeeGroup => {
-      employeeGroup.options.forEach(employee => allEmployees.push(employee))
-    })
+      employeeGroup.options.forEach(employee => allEmployees.push({
+        ...employee,
+        groupId: employeeGroup.id,
+      }));
+    });
     setAllItems(allEmployees);
   }, []);
 
