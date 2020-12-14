@@ -22,7 +22,7 @@
 
 .selectAllOptionLabel {
   /* magic number below is due to absolute positioned images in the group */
-  width: calc(100% - 121px);
+  width: calc(100% - 139px);
   margin-left: 16px;
 }
 

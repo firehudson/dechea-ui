@@ -24,21 +24,22 @@ interface DropdownBodyProps {
   onSelectAll: () => void;
 }
 
-const DropdownBody = React.forwardRef<HTMLDivElement, DropdownBodyProps>((props, ref) => {
-  useEffect(() => {
-    return () => {
-      props.onChangeSearchTerm('');
-    };
-  }, []);
+const DropdownBody = React.forwardRef<HTMLDivElement, DropdownBodyProps>(
+  (props, ref) => {
+    useEffect(() => {
+      return () => {
+        props.onChangeSearchTerm('');
+      };
+    }, []);
 
-  return (
-    <div ref={ref} className={styles.container}>
-      <SearchInput
-        searchTerm={props.searchTerm}
-        onChangeSearchTerm={props.onChangeSearchTerm}
-      />
-      {props.isSearching
-        ? props.filteredOptions.map(option => (
+    return (
+      <div ref={ref} className={styles.container}>
+        <SearchInput
+          searchTerm={props.searchTerm}
+          onChangeSearchTerm={props.onChangeSearchTerm}
+        />
+        {props.isSearching ? (
+          props.filteredOptions.map((option) => (
             <DropdownOption
               key={option.id}
               value={option.id}
@@ -48,13 +49,16 @@ const DropdownBody = React.forwardRef<HTMLDivElement, DropdownBodyProps>((props,
               onSelect={() => props.onSelectOption(option, option.groupId)}
             />
           ))
-        : (
+        ) : (
           <>
             {props.selectAllOptionLabel && (
               <div className={styles.selectAllOption}>
                 <AvatarGroupDark />
-                <span className={styles.selectAllOptionLabel}>{props.selectAllOptionLabel}</span>
+                <span className={styles.selectAllOptionLabel}>
+                  {props.selectAllOptionLabel}
+                </span>
                 <Checkbox
+                  value={12}
                   checked={props.isAllOptionsSelected}
                   onChange={props.onSelectAll}
                 />
@@ -73,37 +77,41 @@ const DropdownBody = React.forwardRef<HTMLDivElement, DropdownBodyProps>((props,
               />
             ))}
             <div className={styles.divider} />
-            {props.optionsGroup.map((optionGroup: EmployeeDropdownGroup, index: number) => (
-              <div key={optionGroup.id}>
-                <DropdownOption
-                  key={optionGroup.id}
-                  value={parseInt(optionGroup.id)}
-                  className={styles.groupLabel}
-                  label={optionGroup.label}
-                  isGroupLabelOption
-                  selected={props.selectedGroups.includes(optionGroup.id)}
-                  onSelect={() => props.onSelectGroup(optionGroup.id)}
-                />
-                {optionGroup.options.map(option => (
+            {props.optionsGroup.map(
+              (optionGroup: EmployeeDropdownGroup, index: number) => (
+                <div key={optionGroup.id}>
                   <DropdownOption
-                    key={option.id}
-                    value={option.id}
-                    label={option.displayName}
-                    avatar={option.avatar}
-                    selected={props.selectedOptions.includes(option.id)}
-                    onSelect={() => props.onSelectOption(option, optionGroup.id)}
+                    key={optionGroup.id}
+                    value={parseInt(optionGroup.id)}
+                    className={styles.groupLabel}
+                    label={optionGroup.label}
+                    isGroupLabelOption
+                    selected={props.selectedGroups.includes(optionGroup.id)}
+                    onSelect={() => props.onSelectGroup(optionGroup.id)}
                   />
-                ))}
-                {(props.optionsGroup.length - 1) !== index && (
-                  <div className={styles.divider} />
-                )}
-              </div>
-            ))}
+                  {optionGroup.options.map((option) => (
+                    <DropdownOption
+                      key={option.id}
+                      value={option.id}
+                      label={option.displayName}
+                      avatar={option.avatar}
+                      selected={props.selectedOptions.includes(option.id)}
+                      onSelect={() =>
+                        props.onSelectOption(option, optionGroup.id)
+                      }
+                    />
+                  ))}
+                  {props.optionsGroup.length - 1 !== index && (
+                    <div className={styles.divider} />
+                  )}
+                </div>
+              )
+            )}
           </>
-        )
-      }
-    </div>
-  );
-});
+        )}
+      </div>
+    );
+  }
+);
 
 export default DropdownBody;

@@ -28,7 +28,7 @@ const DropdownOption = (props: DropdownOptionProps) => {
         <img className={styles.avatar} src={props.avatar} alt={`${props.value}`} />
       )}
       <span className={cx(styles.label, props.isGroupLabelOption && styles.groupLabel)}>{props.label}</span>
-      <ActionComponent onChange={props.onSelect} checked={props.selected} />
+      <ActionComponent onChange={props.onSelect} checked={props.selected} value={props.value} />
     </div>
   );
 };
