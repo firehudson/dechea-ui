@@ -148,6 +148,22 @@ export function EmployeeDropdown(props: EmployeeDropdownProps) {
     setSelectedGroups(groups);
   };
 
+  const onSelectAll = () => {
+    const shouldSelectAll = selectedOptions.length === allOptions.length;
+    const options = shouldSelectAll
+      ? [] // deselect all options
+      : allOptions.map(({ id }: Employee) => id);
+
+    const groups = shouldSelectAll
+      ? [] // deselect all groups
+      : props.employeesByGroup.map(({ id }: EmployeeDropdownGroup) => id);
+
+    // mark options as selected
+    setSelectedOptions(options);
+    // mark groups as selected
+    setSelectedGroups(groups);
+  };
+
   useBlurHandler(
     ref,
     () => setActive(false),
@@ -180,11 +196,13 @@ export function EmployeeDropdown(props: EmployeeDropdownProps) {
         onChangeSearchTerm={onChangeSearchTerm}
         filteredOptions={filteredOptions}
         isSearching={Boolean(searchTerm.length)}
+        isAllOptionsSelected={allOptions.length === selectedOptions.length}
         selectedOptions={selectedOptions}
         onSelectOption={onSelectOption}
         selectedGroups={selectedGroups}
         onSelectPinnedOption={onSelectPinnedOption}
         onSelectGroup={onSelectGroup}
+        onSelectAll={onSelectAll}
       />
     )}
     </>

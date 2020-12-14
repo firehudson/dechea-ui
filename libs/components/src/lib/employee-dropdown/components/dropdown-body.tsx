@@ -16,10 +16,12 @@ interface DropdownBodyProps {
   filteredOptions: Employee[];
   searchTerm: string;
   isSearching: boolean;
+  isAllOptionsSelected: boolean;
   onChangeSearchTerm: (value: string) => void;
   onSelectOption: (option: Employee, groupId: string) => void;
   onSelectGroup: (groupId: string) => void;
   onSelectPinnedOption: (option: Employee) => void;
+  onSelectAll: () => void;
 }
 
 const DropdownBody = React.forwardRef<HTMLDivElement, DropdownBodyProps>((props, ref) => {
@@ -46,7 +48,10 @@ const DropdownBody = React.forwardRef<HTMLDivElement, DropdownBodyProps>((props,
               <div className={styles.selectAllOption}>
                 <AvatarGroupDark />
                 <span className={styles.selectAllOptionLabel}>{props.selectAllOptionLabel}</span>
-                <Checkbox />
+                <Checkbox
+                  checked={props.isAllOptionsSelected}
+                  onChange={props.onSelectAll}
+                />
               </div>
             )}
             <div className={styles.divider} />
