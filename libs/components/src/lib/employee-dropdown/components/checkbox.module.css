@@ -1,4 +1,3 @@
-
 .checkbox {
   visibility: hidden;
 }
@@ -8,7 +7,7 @@ label {
   cursor: pointer;
 }
 
-.checkbox + label:before {
+.checkbox+label:before {
   content: "\00a0";
   display: inline-block;
   height: 16px;
@@ -21,18 +20,22 @@ label {
   outline: none;
 }
 
-.checkbox:checked + label:before {
+.checkbox:checked+label:before {
+  padding-bottom: 2px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background: #346BD1;
-  color: var(--white);
-  content: "\2713";
+  content: url(/assets/tickIcon.svg);
   text-align: center;
   border: none;
+
 }
 
-.checkbox:checked + label:after {
+.checkbox:checked+label:after {
   font-weight: bold;
 }
 
-.checkbox:focus + label::before {
+.checkbox:focus+label::before {
   outline: none;
 }

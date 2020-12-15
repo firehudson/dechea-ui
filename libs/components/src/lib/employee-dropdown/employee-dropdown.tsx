@@ -7,7 +7,6 @@ import DropdownBody from './components/dropdown-body';
 import useBlurHandler from '../../hooks/useBlurHandler';
 import { Employee, EmployeeDropdownGroup } from './employee-dropdown.typings';
 
-
 export interface EmployeeDropdownProps {
   selectAllOptionLabel?: string;
   employeesByGroup: EmployeeDropdownGroup[];
@@ -18,7 +17,9 @@ export interface EmployeeDropdownProps {
 export function EmployeeDropdown(props: EmployeeDropdownProps) {
   const ref = useRef<HTMLDivElement>(null);
   const [active, setActive] = useState<boolean>(false);
-  const [isPinnedOptionSelected, setIsPinnedOptionSelected] = useState<boolean>(false);
+  const [isPinnedOptionSelected, setIsPinnedOptionSelected] = useState<boolean>(
+    false
+  );
   const [allOptions, setAllItems] = useState<Employee[]>([]);
   const [filteredOptions, setFilteredItems] = useState<Employee[]>([]);
   const [selectedOptions, setSelectedOptions] = useState<number[]>([]);
@@ -27,11 +28,13 @@ export function EmployeeDropdown(props: EmployeeDropdownProps) {
 
   useEffect(() => {
     const allEmployees = [];
-    props.employeesByGroup.forEach(employeeGroup => {
-      employeeGroup.options.forEach(employee => allEmployees.push({
-        ...employee,
-        groupId: employeeGroup.id,
-      }));
+    props.employeesByGroup.forEach((employeeGroup) => {
+      employeeGroup.options.forEach((employee) =>
+        allEmployees.push({
+          ...employee,
+          groupId: employeeGroup.id
+        })
+      );
     });
     setAllItems(allEmployees);
   }, []);
@@ -42,7 +45,11 @@ export function EmployeeDropdown(props: EmployeeDropdownProps) {
 
   const onChangeSearchTerm = (searchTerm: string) => {
     setSearchTerm(searchTerm);
-    setFilteredItems(allOptions.filter((option: Employee) => option.displayName.includes(searchTerm)));
+    setFilteredItems(
+      allOptions.filter((option: Employee) =>
+        option.displayName.includes(searchTerm)
+      )
+    );
   };
 
   const findGroupById = (groupId: string): EmployeeDropdownGroup => {
@@ -51,13 +58,16 @@ export function EmployeeDropdown(props: EmployeeDropdownProps) {
     );
   };
 
-  const isAllGroupOptionsSelected = (groupId: string, updateOptions: number[]) => {
+  const isAllGroupOptionsSelected = (
+    groupId: string,
+    updateOptions: number[]
+  ) => {
     const group = findGroupById(groupId);
     return group.options.reduce(
       (accumulatedValue: boolean, currentValue: Employee) => {
-        return accumulatedValue && updateOptions.includes(currentValue.id)
+        return accumulatedValue && updateOptions.includes(currentValue.id);
       },
-      true,
+      true
     );
   };
 
@@ -72,11 +82,8 @@ export function EmployeeDropdown(props: EmployeeDropdownProps) {
 
     // only remove if already selected
     if (!shouldSelectGroup && groupAlreadySelected) {
-      const newGroups = [...selectedGroups]
-      newGroups.splice(
-        selectedGroups.indexOf(groupId),
-        1
-      );
+      const newGroups = [...selectedGroups];
+      newGroups.splice(selectedGroups.indexOf(groupId), 1);
       setSelectedGroups(newGroups);
     }
   };
@@ -84,7 +91,7 @@ export function EmployeeDropdown(props: EmployeeDropdownProps) {
   const onSelectOption = (option: Employee, groupId: string) => {
     const options = isPinnedOptionSelected
       ? [] // start afresh list
-      : [...selectedOptions] // use exisitng selected items;
+      : [...selectedOptions]; // use exisitng selected items;
     const existingIndex = options.indexOf(option.id);
 
     if (existingIndex === -1) {
@@ -110,19 +117,24 @@ export function EmployeeDropdown(props: EmployeeDropdownProps) {
 
   const selectAllGroupItems = (groupId: string) => {
     const group = findGroupById(groupId);
+    const options = isPinnedOptionSelected ? [] : [...selectedOptions];
     const optionsToMarkSelected = group.options
       .filter(
-        option => !selectedOptions.includes(option.id) // filter all unselected options 
+        (option) => !options.includes(option.id) // filter all unselected options
       )
       .map(({ id }: Employee) => id);
 
-    setSelectedOptions([...selectedOptions, ...optionsToMarkSelected]);
+    setSelectedOptions([...options, ...optionsToMarkSelected]);
+
+    if (isPinnedOptionSelected) {
+      // revoke pinned selection state
+      setIsPinnedOptionSelected(false);
+    }
   };
 
   const deselectAllGroupItems = (groupId: string) => {
     const group = findGroupById(groupId);
-
-    const options = [...selectedOptions]
+    const options = isPinnedOptionSelected ? [] : [...selectedOptions];
     group.options.forEach((option: Employee) => {
       const existingIndex = options.indexOf(option.id);
       if (existingIndex !== -1) {
@@ -131,12 +143,15 @@ export function EmployeeDropdown(props: EmployeeDropdownProps) {
     });
 
     setSelectedOptions(options);
+    if (isPinnedOptionSelected) {
+      // revoke pinned selection state
+      setIsPinnedOptionSelected(false);
+    }
   };
 
   const onSelectGroup = (groupId: string) => {
     const groups = [...selectedGroups];
     const existingIndex = groups.indexOf(groupId);
-
     if (existingIndex === -1) {
       groups.push(groupId);
       selectAllGroupItems(groupId);
@@ -164,23 +179,20 @@ export function EmployeeDropdown(props: EmployeeDropdownProps) {
     setSelectedGroups(groups);
   };
 
-  useBlurHandler(
-    ref,
-    () => setActive(false),
-    'anchor',
-  );
+  useBlurHandler(ref, () => setActive(false), 'anchor');
 
   return (
     <div>
-      <div id="anchor" className={cx(styles.container, active && styles.active)} onClick={toggleActive}>
+      <div
+        id="anchor"
+        className={cx(styles.container, active && styles.active)}
+        onClick={toggleActive}
+      >
         <AvatarGroup />
         <span
-          className={cx(
-            styles.placeholder,
-            {
-              [styles.placeholderActive]: active
-            }
-          )}
+          className={cx(styles.placeholder, {
+            [styles.placeholderActive]: active
+          })}
         >
           {props.placeholder}
         </span>
@@ -210,7 +222,7 @@ export function EmployeeDropdown(props: EmployeeDropdownProps) {
 }
 
 EmployeeDropdown.defaultProps = {
-  placeholder: 'Select employee',
+  placeholder: 'Select employee'
 };
 
 export default EmployeeDropdown;

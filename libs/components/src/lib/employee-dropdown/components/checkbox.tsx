@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './checkbox.module.css';
 
 interface CheckboxProps {
-  value: number;
+  value: number | string;
   checked: boolean;
   onChange: () => void;
 }
