@@ -9,7 +9,7 @@ interface DropdownOptionProps {
   avatar?: string;
   className?: string;
   isGroupLabelOption?: boolean;
-  value: number;
+  value: number | string;
   selected: boolean;
   onSelect: () => void;
   actionType: 'checkbox' | 'radio'

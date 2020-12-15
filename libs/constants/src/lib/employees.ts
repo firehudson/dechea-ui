@@ -29,17 +29,17 @@ export const getEmployeesByGroup = () => {
         {
           id: 4,
           avatar: 'assets/dr-xavier.png',
-          displayName: 'Dr. Xavier III',
+          displayName: 'Dr. Xavier III assistant',
         },
         {
           id: 5,
           avatar: 'assets/dr-don.png',
-          displayName: 'Dr. Don Health',
+          displayName: 'Dr. Don Health assistant',
         },
         {
           id: 6,
           avatar: 'assets/dr-tausend.png',
-          displayName: 'Dr. Seigfried Tausend',
+          displayName: 'Dr. Seigfried Tausend assistant',
         },
       ]
     }
